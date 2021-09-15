@@ -175,7 +175,7 @@ func (group *RouterGroup) Static(relativePath, root string) IRoutes {
 // StaticFS works just like `Static()` but a custom `http.FileSystem` can be used instead.
 // Gin by default user: gin.Dir()
 func (group *RouterGroup) StaticFS(relativePath string, fs http.FileSystem) IRoutes {
-	if strings.Contains(relativePath, ":") || strings.Contains(relativePath, "*") {
+	if strings.Contains(relativePath, "://") || strings.Contains(relativePath, "*") {
 		panic("URL parameters can not be used when serving a static folder")
 	}
 	handler := group.createStaticHandler(relativePath, fs)
